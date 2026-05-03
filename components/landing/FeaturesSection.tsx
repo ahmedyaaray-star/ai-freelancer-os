@@ -27,9 +27,8 @@ export const FeaturesSection: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {FEATURES.map((feature, i) => {
-            const IconComponent = (
-              Icons as Record<string, React.ComponentType<Icons.LucideProps>>
-            )[feature.icon] || Icons.Sparkles;
+            const IconComponent =
+  (Icons as any)[feature.icon] || Icons.Sparkles;
 
             return (
               <motion.div
