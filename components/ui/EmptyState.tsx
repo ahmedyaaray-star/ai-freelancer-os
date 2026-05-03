@@ -1,7 +1,7 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 
-interface EmptyStateProps {
+interface EmptyStateProps extends HTMLMotionProps<"div"> {
   icon?: React.ReactNode;
   title: string;
   description?: string;
@@ -13,12 +13,15 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   title,
   description,
   action,
+  className = "",
+  ...props
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col items-center justify-center py-12 text-center"
+      className={`flex flex-col items-center justify-center py-12 text-center ${className}`}
+      {...props}
     >
       {icon && <div className="mb-4 text-gray-400 text-5xl">{icon}</div>}
       <h3 className="text-lg font-medium text-gray-900 mb-1">{title}</h3>

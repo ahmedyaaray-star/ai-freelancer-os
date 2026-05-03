@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -25,28 +25,53 @@ export const Modal: React.FC<ModalProps> = ({
     lg: "max-w-lg",
   };
 
+  // ✅ Close on ESC
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden"; // lock scroll
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
         <>
+          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            className="fixed inset-0 bg-black/50 z-40"
           />
+
+          {/* Modal */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 ${sizes[size]}`}
+            className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full ${sizes[size]}`}
           >
-            <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
+            <div
+              className="bg-white rounded-xl shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()} // ✅ prevent close on click inside
+            >
               {/* Header */}
               {title && (
                 <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {title}
+                  </h3>
                   <button
                     onClick={onClose}
                     className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
