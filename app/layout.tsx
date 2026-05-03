@@ -1,10 +1,6 @@
-'use client'
-
-import { useEffect } from 'react'
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
-import { useAppStore } from '@/store'
-import { useAuth } from '@/hooks/useAuth'
+import { RootLayoutClient } from './layout-client'
 
 export const metadata: Metadata = {
   title: 'AI Freelancer Operating System',
@@ -16,20 +12,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { setUser } = useAppStore()
-  const { user } = useAuth()
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (error) {
-        console.error("Failed to load user:", error);
-      }
-    }
-  }, [setUser]);
-
   return (
     <html lang="en">
       <head>
@@ -40,7 +22,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        {children}
+        <RootLayoutClient>
+          {children}
+        </RootLayoutClient>
       </body>
     </html>
   )
