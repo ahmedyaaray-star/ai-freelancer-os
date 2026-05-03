@@ -1,0 +1,32 @@
+'use client'
+
+import { useEffect } from 'react'
+import type { Metadata } from 'next'
+import { useRouter } from 'next/navigation'
+import { useAppStore } from "@/store";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { ProposalGenerator } from "@/components/dashboard/ProposalGenerator";
+
+export const metadata: Metadata = {
+  title: 'AI Proposal Writer - AI Freelancer OS',
+  description: 'Generate high-converting proposals',
+}
+
+export default function Proposals() {
+  const router = useRouter();
+  const { isAuthenticated } = useAppStore();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/auth/login");
+    }
+  }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) return null;
+
+  return (
+    <DashboardLayout>
+      <ProposalGenerator />
+    </DashboardLayout>
+  );
+}
