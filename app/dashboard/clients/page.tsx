@@ -12,9 +12,6 @@ import { motion } from "framer-motion";
 import { Plus, Mail, Phone, ExternalLink } from "lucide-react";
 import { formatCurrency } from "@/utils/helpers";
 
-export const metadata: Metadata = {
-  title: 'Clients - AI Freelancer OS',
-}
 
 export default function Clients() {
   const router = useRouter();

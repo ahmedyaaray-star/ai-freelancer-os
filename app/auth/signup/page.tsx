@@ -8,11 +8,7 @@ import { SignupForm } from "@/components/shared/SignupForm";
 import { motion } from "framer-motion";
 import { useAppStore } from "@/store";
 
-export const metadata: Metadata = {
-  title: 'Sign Up - AI Freelancer OS',
-  description: 'Create your account',
-  robots: 'noindex, nofollow',
-}
+
 
 export default function Signup() {
   const router = useRouter();

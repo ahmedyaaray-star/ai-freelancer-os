@@ -11,9 +11,8 @@ import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 import { Plus, Zap, Play, Pause, Trash2 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: 'Automation - AI Freelancer OS',
-}
+
+
 
 export default function Automation() {
   const router = useRouter();

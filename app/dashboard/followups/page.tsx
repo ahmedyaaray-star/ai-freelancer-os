@@ -11,9 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 import { Plus, Calendar, Clock, Check } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: 'Follow-ups - AI Freelancer OS',
-}
+
 
 export default function FollowUps() {
   const router = useRouter();
