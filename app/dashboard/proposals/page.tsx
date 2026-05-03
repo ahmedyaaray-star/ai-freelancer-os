@@ -7,10 +7,6 @@ import { useAppStore } from "@/store";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { ProposalGenerator } from "@/components/dashboard/ProposalGenerator";
 
-export const metadata: Metadata = {
-  title: 'AI Proposal Writer - AI Freelancer OS',
-  description: 'Generate high-converting proposals',
-}
 
 export default function Proposals() {
   const router = useRouter();

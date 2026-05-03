@@ -7,10 +7,7 @@ import { useAppStore } from "@/store";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { ClientReplyAssistant } from "@/components/dashboard/ClientReplyAssistant";
 
-export const metadata: Metadata = {
-  title: 'Client Reply Assistant - AI Freelancer OS',
-  description: 'AI-powered client replies',
-}
+
 
 export default function Replies() {
   const router = useRouter();

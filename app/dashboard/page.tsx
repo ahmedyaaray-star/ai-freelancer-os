@@ -7,10 +7,7 @@ import { useAppStore } from '@/store'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { DashboardOverview } from '@/components/dashboard/OverviewDashboard'
 
-export const metadata: Metadata = {
-  title: 'Dashboard - AI Freelancer OS',
-  description: 'Your freelance business dashboard',
-}
+
 
 export default function Dashboard() {
   const router = useRouter()
