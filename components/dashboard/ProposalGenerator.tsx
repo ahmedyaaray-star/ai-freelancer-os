@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { textarea } from "framer-motion/client";
+import { motion } from "framer-motion";
 import { Copy, Download, Send } from "lucide-react";
 
 export const ProposalGenerator: React.FC = () => {
