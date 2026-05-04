@@ -1,25 +1,43 @@
+'use client';
+
 import { create } from "zustand";
-import { User, Plan, Project, Task, Client } from "@/types";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface Plan {
+  name: string;
+}
+
+interface Project {
+  id: string;
+}
+
+interface Task {
+  id: string;
+}
+
+interface Client {
+  id: string;
+}
 
 interface AppStore {
-  // User state
   user: User | null;
   isAuthenticated: boolean;
   plan: Plan | null;
-  
-  // UI state
+
   sidebarOpen: boolean;
   theme: "light" | "dark";
-  
-  // Feature data
+
   projects: Project[];
   tasks: Task[];
   clients: Client[];
-  
-  // Loading states
+
   isLoading: boolean;
-  
-  // Actions
+
   setUser: (user: User | null) => void;
   setPlan: (plan: Plan | null) => void;
   toggleSidebar: () => void;
@@ -32,7 +50,6 @@ interface AppStore {
 }
 
 export const useAppStore = create<AppStore>((set) => ({
-  // Initial state
   user: null,
   isAuthenticated: false,
   plan: null,
@@ -42,23 +59,28 @@ export const useAppStore = create<AppStore>((set) => ({
   tasks: [],
   clients: [],
   isLoading: false,
-  
-  // Actions
+
   setUser: (user) =>
     set({
       user,
       isAuthenticated: !!user,
     }),
+
   setPlan: (plan) => set({ plan }),
+
   toggleSidebar: () =>
     set((state) => ({
       sidebarOpen: !state.sidebarOpen,
     })),
+
   setTheme: (theme) => set({ theme }),
+
   setProjects: (projects) => set({ projects }),
   setTasks: (tasks) => set({ tasks }),
   setClients: (clients) => set({ clients }),
+
   setIsLoading: (isLoading) => set({ isLoading }),
+
   logout: () =>
     set({
       user: null,
