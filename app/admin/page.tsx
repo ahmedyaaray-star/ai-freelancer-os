@@ -1,13 +1,10 @@
-import type { Metadata } from 'next'
+"use client";
+export const dynamic = "force-dynamic";
+
 import Link from 'next/link'
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-
-export const metadata: Metadata = {
-  title: 'Admin Dashboard - AI Freelancer OS',
-  robots: 'noindex, nofollow',
-}
 
 export default function AdminDashboard() {
   return (
@@ -19,7 +16,9 @@ export default function AdminDashboard() {
           className="mb-8"
         >
           <h1 className="text-4xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600 mt-2">Manage users, subscriptions, and system settings</p>
+          <p className="text-gray-600 mt-2">
+            Manage users, subscriptions, and system settings
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-8">
@@ -37,7 +36,9 @@ export default function AdminDashboard() {
             >
               <Card className="p-6">
                 <p className="text-gray-600 mb-2">{stat.label}</p>
-                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  {stat.value}
+                </p>
               </Card>
             </motion.div>
           ))}
@@ -45,17 +46,21 @@ export default function AdminDashboard() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">User Management</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              User Management
+            </h2>
             <Button className="w-full mb-4">Manage Users</Button>
-            <Button variant="secondary" fullWidth>
+            <Button variant="secondary" className="w-full">
               View Analytics
             </Button>
           </Card>
 
           <Card className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Subscription Management</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Subscription Management
+            </h2>
             <Button className="w-full mb-4">Manage Plans</Button>
-            <Button variant="secondary" fullWidth>
+            <Button variant="secondary" className="w-full">
               View Revenue
             </Button>
           </Card>
