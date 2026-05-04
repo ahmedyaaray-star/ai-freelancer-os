@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface User {
   id: string;
@@ -96,9 +96,7 @@ export const useAppStore = create<AppStore>()(
     }),
     {
       name: "app-storage",
-      storage: createJSONStorage(() =>
-        typeof window !== "undefined" ? localStorage : undefined
-      ),
+      storage: createJSONStorage(() => localStorage), // ✅ FIXED LINE
     }
   )
 );
