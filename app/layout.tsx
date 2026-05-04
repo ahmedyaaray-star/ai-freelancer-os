@@ -1,8 +1,7 @@
-import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import { RootLayoutClient } from './layout-client'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'AI Freelancer Operating System',
   description: 'Automate proposals, manage clients, track deadlines, and grow your freelance income.',
 }

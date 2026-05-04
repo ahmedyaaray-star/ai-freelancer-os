@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface User {
   id: string;
@@ -49,45 +50,55 @@ interface AppStore {
   logout: () => void;
 }
 
-export const useAppStore = create<AppStore>((set) => ({
-  user: null,
-  isAuthenticated: false,
-  plan: null,
-  sidebarOpen: true,
-  theme: "light",
-  projects: [],
-  tasks: [],
-  clients: [],
-  isLoading: false,
-
-  setUser: (user) =>
-    set({
-      user,
-      isAuthenticated: !!user,
-    }),
-
-  setPlan: (plan) => set({ plan }),
-
-  toggleSidebar: () =>
-    set((state) => ({
-      sidebarOpen: !state.sidebarOpen,
-    })),
-
-  setTheme: (theme) => set({ theme }),
-
-  setProjects: (projects) => set({ projects }),
-  setTasks: (tasks) => set({ tasks }),
-  setClients: (clients) => set({ clients }),
-
-  setIsLoading: (isLoading) => set({ isLoading }),
-
-  logout: () =>
-    set({
+export const useAppStore = create<AppStore>()(
+  persist(
+    (set) => ({
       user: null,
       isAuthenticated: false,
       plan: null,
+      sidebarOpen: true,
+      theme: "light",
       projects: [],
       tasks: [],
       clients: [],
+      isLoading: false,
+
+      setUser: (user) =>
+        set({
+          user,
+          isAuthenticated: !!user,
+        }),
+
+      setPlan: (plan) => set({ plan }),
+
+      toggleSidebar: () =>
+        set((state) => ({
+          sidebarOpen: !state.sidebarOpen,
+        })),
+
+      setTheme: (theme) => set({ theme }),
+
+      setProjects: (projects) => set({ projects }),
+      setTasks: (tasks) => set({ tasks }),
+      setClients: (clients) => set({ clients }),
+
+      setIsLoading: (isLoading) => set({ isLoading }),
+
+      logout: () =>
+        set({
+          user: null,
+          isAuthenticated: false,
+          plan: null,
+          projects: [],
+          tasks: [],
+          clients: [],
+        }),
     }),
-}));
+    {
+      name: "app-storage",
+      storage: createJSONStorage(() =>
+        typeof window !== "undefined" ? localStorage : undefined
+      ),
+    }
+  )
+);
