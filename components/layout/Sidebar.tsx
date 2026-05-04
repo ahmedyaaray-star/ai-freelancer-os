@@ -1,6 +1,7 @@
+'use client'
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Sparkles,
@@ -79,12 +80,14 @@ export const Sidebar: React.FC = () => {
     },
   ];
 
+  const pathname = usePathname();
+
   const handleLogout = () => {
     logout();
     router.push("/");
   };
 
-  const isActive = (href: string) => router.pathname === href;
+  const isActive = (href: string) => pathname === href;
 
   return (
     <>

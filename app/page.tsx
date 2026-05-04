@@ -11,8 +11,12 @@ import { Footer } from "@/components/landing/Footer";
 export const metadata: Metadata = {
   title: 'AI Freelancer Operating System - Run Your Business on Autopilot',
   description: 'Automate proposals, manage clients, track deadlines, and grow your freelance income. The all-in-one platform for modern freelancers.',
-  viewport: 'width=device-width, initial-scale=1',
 }
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export default function Home() {
   return (
