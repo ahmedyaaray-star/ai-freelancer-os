@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppStore } from '@/store'
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
-import { AIClientReplyGenerator } from '@/components/dashboard/AIReplyGenerator'
+import { MVPDashboard } from '@/components/dashboard/MVPDashboard'
 
 export default function Dashboard() {
   const router = useRouter()
@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
-      <AIClientReplyGenerator />
+      <MVPDashboard />
     </DashboardLayout>
   )
 }
